@@ -27,11 +27,11 @@ class TicTacToe
     user_input.to_i -1 
   end 
   
-  def move(index, current_player)
-      @board[index] = current_player    
+  def move(index, token)
+      @board[index] = token    
   end 
  
-  def position_taken?(board, index)
+  def position_taken?(index)
     if (board[index] == " ") || (board[index] == "") || (board[index] == nil)
       return false 
     else
@@ -49,7 +49,7 @@ class TicTacToe
   
   def turn
     puts "Please enter 1-9"
-    user_input = gets.chomp
+    user_input = gets.strip
     index = input_to_index (user_input)
     if valid_move? (board, index)
       move(board, index, current_player(board))

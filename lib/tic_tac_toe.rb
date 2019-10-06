@@ -61,7 +61,7 @@ class TicTacToe
   end
  
   def won?(board)
-    WIN_COMBINATIONS.each do |combo|
+    WIN_COMBINATIONS.any? do |combo|
       if position_taken?(combo[0]) && @board[combo[0]] == @board[combo[1]] && @board[combo[1]] == @board[combo[2]]
         return combo
       end
@@ -72,15 +72,9 @@ class TicTacToe
     @board.all? {|square| != " "} 
   end 
   
-  def draw?(board)
-    if !won?(board) && full?(board)
-      return true
-    elsif !won?(board) && !full?(board)
-      return false
-    else won?(board)
-      return false
-    end
-  end
+  def draw
+    full? && !won?
+  end 
   
   def over?(board)
     if draw?(board) || won?(board) || full?(board)
